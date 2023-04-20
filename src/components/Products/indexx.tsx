@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import CardView from "./CardView";
 import ListView from "./ListView";
 import Header from "./Header";
@@ -10,27 +10,14 @@ const { LIST, CARD } = VIEWS;
 
 const index = () => {
   const [viewType, setViewType] = useState<typeof LIST | typeof CARD>(CARD);
-  const [products, setProducts] = useState([]);
-  const [dataSize, setDataSize] = useState([]);
-  const [isLoading, setLoading] = useState(false);
   const [offset, setOffset] = useState(0);
 
-  const fetchProducts = async () => {
-    try {
-      setLoading(true);
-      const { products, total } = await getProducts({ limit: LIMIT, skip: offset * LIMIT });
-      setProducts(products);
-      setDataSize(dataSize);
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setLoading(false);
-    }
-  }
+  const { data, isLoading } = useQuery(
+    ["post", offset], 
+    () => getProducts({ limit: LIMIT, skip: offset * LIMIT })
+  );
 
-  useEffect(() => {
-    fetchProducts();
-  }, [offset]);
+  const { products } = data || {};
 
   return (
     <div className="py-4">

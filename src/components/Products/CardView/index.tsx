@@ -21,7 +21,7 @@ const CardView = ({ isLoading, products, setOffset }: Props) => {
             <ProductsSkeleton />
           ) : (
             products.map((product: ProductData) => (
-              <ProductCard productData={product} />
+              <ProductCard key={product.id} productData={product} />
             ))
           )}
         </Row>
