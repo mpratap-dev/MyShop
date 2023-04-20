@@ -4,6 +4,7 @@ import App from "./App";
 import "antd-css-utilities/utility.min.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Products from "./components/Products";
+import ProductDetails from "./components/Products/DetailView";
 import "./index.css";
 
 const router = createBrowserRouter([
@@ -14,6 +15,10 @@ const router = createBrowserRouter([
       {
         path: "products",
         element: <Products />,
+      },
+      {
+        path: "products/:id",
+        element: <ProductDetails />,
       },
     ]
   },

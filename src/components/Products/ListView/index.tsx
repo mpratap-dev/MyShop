@@ -8,10 +8,11 @@ type Props = {
   isLoading: boolean;
   products: any[];
   setOffset: React.Dispatch<React.SetStateAction<number>>;
+  total: number;
 };
 
 const ListView = (props: Props) => {
-  const { products, isLoading, setOffset } = props;
+  const { products, isLoading, setOffset, total } = props;
   const [searchText, setSearchText] = useState("");
   const [searchedColumn, setSearchedColumn] = useState("");
 
